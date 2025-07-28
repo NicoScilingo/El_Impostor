@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Impostor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Pantalla de creación de sala -->
+    <div id="createRoomScreen" class="screen">
+      <h1>El Impostor</h1>
+      <p>
+        Ingresá los nombres de los participantes, uno por línea. Cuando la
+        sala se cree obtendrás un identificador para compartir con tus
+        amigos.
+      </p>
+      <textarea id="namesInput" placeholder="Jugador 1\nJugador 2\nJugador 3"></textarea>
+      <button id="createRoomBtn">Crear sala</button>
+
+      <hr />
+      <h3>¿Ya tienes una sala?</h3>
+      <p>Introduce el ID y tu nombre para unirte a una sala existente.</p>
+      <input id="joinRoomId" type="text" placeholder="ID de sala" />
+      <input id="joinName" type="text" placeholder="Tu nombre" />
+      <button id="joinRoomBtn">Unirse a sala</button>
+    </div>
+
+    <!-- Pantalla de lobby -->
+    <div id="lobbyScreen" class="screen" hidden>
+      <h1>Sala <span id="roomIdDisplay"></span></h1>
+      <p>Comparte este ID con tus amigos para que se unan.</p>
+      <div id="playersListContainer">
+        <h3>Participantes:</h3>
+        <ul id="playersList"></ul>
+      </div>
+      <!-- Eliminamos la selección de nombre. Cada participante ingresa su nombre al unirse y
+           automáticamente se le asigna ese jugador. -->
+      <div class="action-row">
+        <button id="startGameBtn">Iniciar juego</button>
+        <button id="forceStartBtn" class="force-btn">Forzar inicio</button>
+      </div>
+    </div>
+
+    <!-- Pantalla de pistas -->
+    <div id="clueScreen" class="screen" hidden>
+      <h1>Dar pista</h1>
+      <div id="playerInfo"></div>
+      <div class="input-group">
+        <input id="clueInput" type="text" placeholder="Escribe tu pista aquí" />
+        <button id="sendClueBtn">Enviar pista</button>
+      </div>
+      <div class="action-row">
+        <button id="goToVoteBtn">Pasar a votación</button>
+        <button id="forceVoteBtn" class="force-btn">Forzar votación</button>
+      </div>
+      <div id="cluesContainer">
+        <h3>Pistas:</h3>
+        <ul id="cluesList"></ul>
+      </div>
+    </div>
+
+    <!-- Pantalla de votación -->
+    <div id="voteScreen" class="screen" hidden>
+      <h1>Votar al impostor</h1>
+      <ul id="voteOptions" class="options"></ul>
+      <button id="submitVoteBtn">Enviar voto</button>
+      <button id="showResultsBtn">Ver resultados</button>
+      <button id="forceResultsBtn" class="force-btn">Forzar resultados</button>
+      <button id="resetVotesBtn" class="force-btn">Reiniciar votación</button>
+      <div id="votesContainer">
+        <h3>Votos recibidos:</h3>
+        <ul id="votesList"></ul>
+      </div>
+    </div>
+
+    <!-- Pantalla de resultados -->
+    <div id="resultsScreen" class="screen" hidden>
+      <h1>Resultados</h1>
+      <div id="resultsContent"></div>
+      <div class="action-row">
+        <button id="nextActionBtn">Siguiente</button>
+        <button id="forceNextBtn" class="force-btn">Forzar</button>
+      </div>
+    </div>
+
+    <!-- Lógica de aplicación -->
+    <script src="app.js"></script>
+  </body>
+</html>
