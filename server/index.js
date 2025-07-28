@@ -1012,8 +1012,15 @@ const server = http.createServer((req, res) => {
     if (url.pathname.startsWith('/api')) {
       handleApi(req, res, url);
     } else {
-      // If root request, serve the index file by default
-      const pathname = url.pathname === '/' ? '/index.html' : url.pathname;
+      // Si es la raíz, devolvemos una respuesta directa para evitar error 404 en Render
+      if (url.pathname === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Servidor El Impostor activo!');
+        return;
+      }
+
+      // Para otras rutas, servimos archivos estáticos normalmente
+      const pathname = url.pathname;
       serveStatic(pathname, res);
     }
   } catch (err) {
